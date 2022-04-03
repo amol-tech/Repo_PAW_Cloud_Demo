@@ -86,7 +86,11 @@
   <script src="{% static './js/addons/datatables.min.js' %}"></script>
   <script>
     $(document).ready(function () {
-      $('#dtBasicExample').DataTable();
+      $('#dtBasicExample').DataTable(
+        {
+          "pageLength": 25
+        }
+      );
       $('.dataTables_length').addClass('bs-select');
     });
   </script>
