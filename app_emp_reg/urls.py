@@ -7,4 +7,5 @@ urlpatterns = [
     path('sigma/', views.index_main, name='index_main'),
     path('employees/', views.index_employee, name='index_employee'),
     path('departments/', views.index_department, name='index_department'),
+    path('raw_emp/', views.index_raw_emp, name='index_raw_emp'),
 ]
