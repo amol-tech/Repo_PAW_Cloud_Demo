@@ -1,0 +1,31 @@
+{% extends 'app_emp_reg/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="jumbotron" xmlns="http://www.w3.org/1999/html">
+        <h4>{{employee.name}}</h4>
+            <form method="post">
+                {% csrf_token %}
+                 <div class="row">
+                    <div class="col-4">
+                        {{ form.id|as_crispy_field }}
+                        {{ form.name|as_crispy_field }}
+                        {{ form.designation|as_crispy_field }}
+                        {{ form.department|as_crispy_field }}
+                        {{ form.joining_date|as_crispy_field}}
+                    </div>
+                     <div class="col-4">
+                        {{ form.basic|as_crispy_field }}
+                        {{ form.allowence|as_crispy_field }}
+                     </div>
+                     <div class="col-4">
+                        {{ form.address|as_crispy_field }}
+                        {{ form.city|as_crispy_field }}
+                        {{ form.contact_no|as_crispy_field }}
+                     </div>
+                 </div>
+                <input type="submit" class="btn" value="Submit">
+                <a href="{% url 'app_emp_reg:index_employees' %}" class="btn">Cancel</a>
+            </form>
+    </div>
+{% endblock %}

@@ -28,12 +28,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'app_emp_reg:index_employee' %}">Employee
+          <a class="nav-link" href="{% url 'app_emp_reg:index_employees' %}">Employee
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'app_emp_reg:index_department' %}">Department</a>
+          <a class="nav-link" href="{% url 'app_emp_reg:index_departments' %}">Department</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -98,6 +98,7 @@
         }
       );
       $('.dataTables_length').addClass('bs-select');
+      $('.datepicker').datepicker();
     });
   </script>
 </body>
