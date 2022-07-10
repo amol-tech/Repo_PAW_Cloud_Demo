@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+from django.contrib import admin
 
 # Create your models here.
 class Department(models.Model):
@@ -29,3 +31,37 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("app_emp_reg:index_employees")
+
+class Customer(models.Model):
+    id = models.CharField(max_length=4,primary_key=True,db_column='cust_id')
+    name = models.CharField(max_length=255,db_column='cust_name',unique=True)
+
+    class Meta:
+        db_table = 'customer'
+
+    def __str__(self):
+        return self.name
+
+class CustomerAccountDetail(models.Model):
+    id = models.AutoField(primary_key=True,db_column='cust_acc_id')
+    cust_id = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    bank_name = models.CharField(max_length=255,db_column='bank_name')
+    isfc_code = models.CharField(max_length=255, db_column='isfc_code')
+
+    class Meta:
+        db_table = 'cust_acc_detail'
+
+    def __str__(self):
+        return self.bank_name + self.isfc_code
+
+class CustomerAccountDetailInline(admin.StackedInline):
+    model = CustomerAccountDetail
+
+class CustomerAdmin(admin.ModelAdmin):
+    inlines = [
+        CustomerAccountDetailInline,
+    ]
+

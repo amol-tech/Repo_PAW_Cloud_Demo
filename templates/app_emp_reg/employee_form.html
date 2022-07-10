@@ -2,30 +2,63 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="jumbotron" xmlns="http://www.w3.org/1999/html">
-        <h4>{{employee.name}}</h4>
-            <form method="post">
-                {% csrf_token %}
-                 <div class="row">
-                    <div class="col-4">
-                        {{ form.id|as_crispy_field }}
-                        {{ form.name|as_crispy_field }}
-                        {{ form.designation|as_crispy_field }}
-                        {{ form.department|as_crispy_field }}
-                        {{ form.joining_date|as_crispy_field}}
-                    </div>
-                     <div class="col-4">
-                        {{ form.basic|as_crispy_field }}
-                        {{ form.allowence|as_crispy_field }}
-                     </div>
-                     <div class="col-4">
-                        {{ form.address|as_crispy_field }}
-                        {{ form.city|as_crispy_field }}
-                        {{ form.contact_no|as_crispy_field }}
-                     </div>
-                 </div>
-                <input type="submit" class="btn" value="Submit">
-                <a href="{% url 'app_emp_reg:index_employees' %}" class="btn">Cancel</a>
-            </form>
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="defaultForm-email" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-default">Login</button>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="jumbotron" xmlns="http://www.w3.org/1999/html">
+    <h4>{{employee.name}}</h4>
+        <form method="post">
+            {% csrf_token %}
+             <div class="row">
+                <div class="col-4">
+                    {{ form.id|as_crispy_field }}
+                    {{ form.name|as_crispy_field }}
+                    {{ form.designation|as_crispy_field }}
+                    {{ form.department|as_crispy_field }}
+                    {{ form.joining_date|as_crispy_field}}
+                </div>
+                 <div class="col-4">
+                    {{ form.basic|as_crispy_field }}
+                    {{ form.allowence|as_crispy_field }}
+                 </div>
+                 <div class="col-4">
+                    {{ form.address|as_crispy_field }}
+                    {{ form.city|as_crispy_field }}
+                    {{ form.contact_no|as_crispy_field }}
+                 </div>
+             </div>
+            <input type="submit" class="btn" value="Submit">
+            <a href="{% url 'app_emp_reg:index_employees' %}" class="btn">Cancel</a>
+            <a href="" class="btn" data-toggle="modal" data-target="#modalLoginForm">Other Details</a>
+        </form>
+</div>
+
 {% endblock %}
